@@ -1,0 +1,19 @@
+projection;
+
+define behavior for ZCAA361_C_TRAVEL_MM alias Travel
+use etag
+{
+  // scenario specific field control
+  field ( mandatory ) BeginDate, EndDate, customerID;
+
+  use create;
+  use update;
+  use delete;
+  use association _Booking { create; }
+}
+
+define behavior for ZCAA361_C_BOOKING_MM alias Booking
+{
+  use update;
+  use delete;
+}

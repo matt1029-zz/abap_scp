@@ -1,0 +1,104 @@
+@Metadata.layer: #CORE
+annotate view ZCAA361_C_TRAVEL_MM with
+{
+  @UI.facet: [
+              --Header
+              { id : 'Travel',
+                type : #COLLECTION,
+                label: 'Travel',
+                position: 10
+              },
+              { id : 'Admin',
+                type : #FIELDGROUP_REFERENCE,
+                label: 'Administartion Data',
+                parentId: 'Travel',
+                targetQualifier: 'AdminFG',
+                position: 10
+              },
+              { id : 'Dates',
+                type : #FIELDGROUP_REFERENCE,
+                label: 'Dates',
+                parentId: 'Travel',
+                targetQualifier: 'DateFG',
+                position: 20
+              },
+              { id : 'Costs',
+                type : #FIELDGROUP_REFERENCE,
+                label: 'Costs',
+                parentId: 'Travel',
+                targetQualifier: 'CostFG',
+                position: 30
+              },
+              --Booking
+              { id : 'Booking',
+                type : #LINEITEM_REFERENCE,
+                label: 'Booking',
+                position: 20,
+                targetElement: '_Booking'
+              },
+              { id : 'PriceDP',
+                type : #DATAPOINT_REFERENCE,
+                targetQualifier: 'Price',
+                position: 10
+              },
+              { id : 'StatusDP',
+                type : #DATAPOINT_REFERENCE,
+                targetQualifier: 'StatusDP',
+                position: 20
+              }
+   ]
+  @UI:{
+      lineItem:[{  position: 10, importance: #HIGH}],
+      fieldGroup: [{ position: 10, qualifier: 'AdminFG' }],
+      selectionField: [{ position: 10 }]
+  }
+  TravelID;
+  @UI:{
+      lineItem:[{  position: 20, importance: #HIGH}],
+      fieldGroup: [{ position: 20, qualifier: 'AdminFG' }],
+      selectionField: [{ position: 20 }]
+  }
+  @Consumption.valueHelpDefinition: [{ entity : {name: '/DMO/I_Agency', element: 'AgencyID'  } }]
+  AgencyID;
+  @UI:{
+      lineItem:[{  position: 30, importance: #HIGH}],
+      fieldGroup: [{ position: 30, qualifier: 'AdminFG' }],
+      selectionField: [{ position: 30 }]
+  }
+  @Consumption.valueHelpDefinition: [{ entity : {name: '/DMO/I_Customer', element: 'CustomerID'  } }]
+  CustomerID;
+  @UI.fieldGroup: [ { position: 40, qualifier: 'AdminFG' } ]
+  Description;
+  @UI:{
+      lineItem:[{  position: 40, importance: #MEDIUM}],
+      fieldGroup: [{ position: 10, qualifier: 'DateFG' }]
+  }
+  BeginDate;
+  @UI:{
+      lineItem:[{  position: 50, importance: #MEDIUM}],
+      fieldGroup: [{ position: 20, qualifier: 'DateFG' }]
+  }
+  EndDate;
+  @UI:{
+      lineItem:[{  position: 60, importance: #MEDIUM}],
+      fieldGroup: [{ position: 20, qualifier: 'CostFG' }]
+  }
+  BookingFee;
+  @UI:{
+      lineItem:[{  position: 70, importance: #MEDIUM}],
+      fieldGroup: [{ position: 10, qualifier: 'CostFG' }]
+  }
+  TotalPrice;
+  @Consumption.valueHelpDefinition: [{entity: {name: 'I_Currency', element: 'Currency' }}]
+  CurrencyCode;
+  @UI:{
+      lineItem:[{  position: 80, importance: #HIGH },
+                { type: #FOR_ACTION, dataAction: 'bookTravel',  label: 'Book Travel' }
+      ],
+      fieldGroup: [{ position: 80, label: 'Stat' , qualifier: 'AdminFG' }],
+      dataPoint:  { qualifier: 'StatusDP' }
+  }
+  TravelStatus;
+  @UI.hidden: true
+  LastChangedAt;
+}

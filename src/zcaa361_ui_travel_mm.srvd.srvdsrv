@@ -1,0 +1,8 @@
+@EndUserText.label: 'Flight reference scenario: Travel'
+define service ZCAA361_UI_TRAVEL_MM {
+  expose ZCAA361_C_TRAVEL_MM as Travel;
+  expose ZCAA361_C_BOOKING_MM as Booking;
+  expose /DMO/I_Customer as Customer;
+  expose I_Currency as Currency;
+  expose /DMO/I_Agency as Agency;
+}
